@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  Cloud TV :: Backend
+  $Id: web.xml 84953 2013-10-11 14:28:42Z ymartel $
+  $HeadURL: https://svn.tsbctv.com/Iskandar/tc-back/trunk/tc-back-engine/src/main/webapp/WEB-INF/web.xml $
+  %%
+  Copyright (C) 2012 - 2013 TOSHIBA Corporation
+  %%
+  This software is copyright 2012 - 2013 TOSHIBA Corporation - All rights reserved. The source code of this
+  software is confidential. Any partial or total disclosure or use, other than those expressly and
+  previously authorised in writing by the legal representatives of TOSHIBA Corporation are strictly
+  forbidden. Use of this software, in object code, or use of all or part of its source code, is
+  subject to the execution of a software licence agreement by which TOSHIBA Corporation grants you
+  a right of use, according to the terms and conditions set forth strictly and restrictively in such
+  agreement. Unless a valid licence agreement exists, you are not allowed to use the software,
+  in object code, or all or part of its source code, for any purpose whatsoever.
+  #L%
+  -->
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <!-- Reads request input using UTF-8 encoding -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+        <!-- Handles all requests into the application -->
+    <servlet>
+        <servlet-name>spring-mvc-webapp</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:facebook-engine-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring-mvc-webapp</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+   </web-app>
